@@ -30,7 +30,10 @@ robot-backpack/
 │   ├─ install_deps.sh                # convenience install (optional)  
 │   ├─ build.sh                       # local build into ./bin  
 │   └─ run_demo.sh                    # runs the preview build  
-└─ CMakeLists.txt                     # optional (you can build with g++)  
+├─ CMakeLists.txt                     # optional (you can build with g++)
+├─ CAD_Files/
+│   ├─ STL_Files/              
+│   └─ SLDPRT_Files/                   
 ```
 
 ## What this does
