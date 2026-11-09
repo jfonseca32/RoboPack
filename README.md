@@ -5,23 +5,23 @@
 RoboPack is a person following robot built around a **Raspberry Pi, STM32, a bogey suspension, a SLAMTEC RPLIDAR C1, and four BU04 UWB boards**:
 three receivers on the robot and one tag in the person's pocket.
 
-The Pi estimates the robot's pose and builds a 2D LiDAR map, locates the selected tag from radio
-ranges, and scores steering/speed trajectories. Collision checks reject unsafe candidates
-before scoring. The STM32 does the steering, motor speed control, and the final stop/watchdog behavior.
+The Pi estimates the robot's pose and builds a 2D LiDAR map, locates the tag in the person's pocket
+from radio ranges, and scores steering/speed trajectories. The STM32 does the steering, motor speed control, and the final stop/watchdog behavior.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-    C1[RPLIDAR C1] --> Scan[Validated LiDAR scan]
-    Scan --> SLAM[Local scan matching and occupancy map]
-    Scan --> Collision[Fresh obstacle and unknown-space checks]
+    C1[RPLIDAR C1] --> Scan[LiDAR scan]
+    Scan --> SLAM[Occupancy map]
+    SLAM --> Collision[Obstacle and unknown space checks]
     STM[STM32 encoders and IMU] --> SLAM
     Tag[Pocket BU04 tag] <--> Anchors[Three BU04 robot receivers]
     Anchors --> UWB[Trilateration and uncertainty gate]
-    UWB --> Planner[Score feasible car-style trajectories]
-    SLAM --> Planner
-    Collision --> Planner
+    UWB ---> Person[Where is the user the in map?]
+    Person --> Planner[Score feasible trajectories]
+    Collision --> Obstacles[Where are obstacles in the map?]
+    Obstacles --> Planner
     Planner --> Guard[STM32 command guard]
     Stop[Physical emergency stop] --> Guard
     Guard --> Motors[Steering servo and drive motor]
