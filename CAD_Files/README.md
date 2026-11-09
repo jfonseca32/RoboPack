@@ -1,7 +1,20 @@
-# Existing RoboPack mechanical design
+# RoboPack mechanical design
 
-The STL and SLDPRT directory contents are preserved from the original robot. The LiDAR/UWB software pivot does not change the frame, steering rack, suspension, drive train or body parts.
+The files include the current 6-Wheel Bogey Suspension and the original RC Car.
 
-The controller assumes the existing car-style steering mechanism. Measure wheelbase, maximum road-wheel angle and a conservative loaded footprint about the rear axle for config/robot.conf.
+The controller uses the dimensions of the current suspension like wheelbase, maximum road-wheel angle
+and loaded footprint about the rear axle for config/robot.conf. So, if using a different setup, **adapt the controller**.
 
-Add the C1 and three BU04 receivers using mounts appropriate to the physical assembly. This revision does not add or change CAD mounting geometry. Place receiver antennas at three non-collinear, measured locations and keep the LiDAR scan plane clear of bodywork. See [hardware setup](../docs/hardware.md).
+I have provided the full STL files for both the current 6-Wheel Bogey Suspension and the original RC
+Car assemblies.
+
+Please note that I am not distributing the original CAD source files (such as STEP, or native
+parametric files), as this project is currently transitioning into a commercial venture.
+
+## Current Bogey Suspension Assembly
+
+![Bogey Suspension Assembly](../public/trailmate_render.png)
+
+## Older RC Car Assembly
+
+![RC Car](../public/trailmate_old_render.jpg)
